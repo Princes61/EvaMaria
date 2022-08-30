@@ -1,3 +1,4 @@
+
 # Kanged From @TroJanZheX
 import asyncio
 import re
@@ -352,10 +353,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         try:
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                url = f"https://api.shareus.in/shortLink?token=xGzniHOkadfY4aP4HKbnGxHGGkv1&format=json&link=https://telegram.dog/{nyva}?start=pr0fess0r_99_-_-_-_{file_id}"
+                res = requests.get(url).json()
+                short_link = res["shortlink"] 
+                await query.answer(url=f"short_link") 
                 return
             elif settings['botpm']:
-                await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+                url = f"https://api.shareus.in/shortLink?token=xGzniHOkadfY4aP4HKbnGxHGGkv1&format=json&link=https://telegram.dog/{nyva}?start=pr0fess0r_99_-_-_-_{file_id}"
+                res = requests.get(url).json()
+                short_link = res["shortlink"] 
+                await query.answer(url=f"short_link") 
                 return
             else:
                 await client.send_cached_media(
@@ -368,9 +375,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except UserIsBlocked:
             await query.answer('Unblock the bot mahn !', show_alert=True)
         except PeerIdInvalid:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+            url = f"https://api.shareus.in/shortLink?token=xGzniHOkadfY4aP4HKbnGxHGGkv1&format=json&link=https://telegram.dog/{nyva}?start=pr0fess0r_99_-_-_-_{file_id}"
+            res = requests.get(url).json()
+            short_link = res["shortlink"] 
+            await query.answer(url=f"short_link") 
         except Exception as e:
-            await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+            url = f"https://api.shareus.in/shortLink?token=xGzniHOkadfY4aP4HKbnGxHGGkv1&format=json&link=https://telegram.dog/{nyva}?start=pr0fess0r_99_-_-_-_{file_id}"
+            res = requests.get(url).json()
+            short_link = res["shortlink"] 
+            await query.answer(url=f"short_link") 
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒", show_alert=True)
